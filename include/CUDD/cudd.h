@@ -351,7 +351,7 @@ typedef int (*DD_QSFP)(const void *, const void *);
   SeeAlso      [Cudd_NotCond]
 
 ******************************************************************************/
-#define Cudd_Not(node) ((DdNode *)((long)(node) ^ 01))
+#define Cudd_Not(node) ((DdNode *)((intptr_t)(node) ^ 01))
 
 
 /**Macro***********************************************************************
@@ -367,7 +367,7 @@ typedef int (*DD_QSFP)(const void *, const void *);
   SeeAlso      [Cudd_Not]
 
 ******************************************************************************/
-#define Cudd_NotCond(node,c) ((DdNode *)((long)(node) ^ (c)))
+#define Cudd_NotCond(node,c) ((DdNode *)((intptr_t)(node) ^ (c)))
 
 
 /**Macro***********************************************************************
@@ -381,7 +381,7 @@ typedef int (*DD_QSFP)(const void *, const void *);
   SeeAlso      [Cudd_Complement Cudd_IsComplement]
 
 ******************************************************************************/
-#define Cudd_Regular(node) ((DdNode *)((unsigned long)(node) & ~01))
+#define Cudd_Regular(node) ((DdNode *)((uintptr_t)(node) & ~01))
 
 
 /**Macro***********************************************************************
@@ -395,7 +395,7 @@ typedef int (*DD_QSFP)(const void *, const void *);
   SeeAlso      [Cudd_Regular Cudd_IsComplement]
 
 ******************************************************************************/
-#define Cudd_Complement(node) ((DdNode *)((unsigned long)(node) | 01))
+#define Cudd_Complement(node) ((DdNode *)((uintptr_t)node | 01))
 
 
 /**Macro***********************************************************************
@@ -409,7 +409,7 @@ typedef int (*DD_QSFP)(const void *, const void *);
   SeeAlso      [Cudd_Regular Cudd_Complement]
 
 ******************************************************************************/
-#define Cudd_IsComplement(node)	((int) ((long) (node) & 01))
+#define Cudd_IsComplement(node)	((int) ((intptr_t) (node) & 01))
 
 
 /**Macro***********************************************************************
@@ -679,7 +679,7 @@ extern unsigned int Cudd_ReadMinDead (DdManager *dd);
 extern unsigned int Cudd_ReadReorderings (DdManager *dd);
 extern unsigned int Cudd_ReadMaxReorderings (DdManager *dd);
 extern void Cudd_SetMaxReorderings (DdManager *dd, unsigned int mr);
-extern long Cudd_ReadReorderingTime (DdManager * dd);
+extern intptr_t Cudd_ReadReorderingTime (DdManager * dd);
 extern int Cudd_ReadGarbageCollections (DdManager * dd);
 extern long Cudd_ReadGarbageCollectionTime (DdManager * dd);
 extern double Cudd_ReadNodesFreed (DdManager * dd);

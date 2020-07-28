@@ -2627,7 +2627,7 @@ Cudd_AverageDistance(
     double temeasured, nextmeasured;
     int i, j;
     int slots, nvars;
-    long diff;
+    intptr_t diff;
     DdNode *scan;
     DdNodePtr *nodelist;
     DdNode *sentinel = &(dd->sentinel);
@@ -2650,13 +2650,13 @@ Cudd_AverageDistance(
 	for (j = 0; j < slots; j++) {
 	    scan = nodelist[j];
 	    while (scan != sentinel) {
-		diff = (long) scan - (long) cuddT(scan);
+		diff = (intptr_t) scan - (intptr_t) cuddT(scan);
 		tesubtotal += (double) ddAbs(diff);
-		diff = (long) scan - (long) Cudd_Regular(cuddE(scan));
+		diff = (intptr_t) scan - (intptr_t) Cudd_Regular(cuddE(scan));
 		tesubtotal += (double) ddAbs(diff);
 		temeasured += 2.0;
 		if (scan->next != sentinel) {
-		    diff = (long) scan - (long) scan->next;
+		    diff = (intptr_t) scan - (intptr_t) scan->next;
 		    nextsubtotal += (double) ddAbs(diff);
 		    nextmeasured += 1.0;
 		}
@@ -2675,7 +2675,7 @@ Cudd_AverageDistance(
 	scan = nodelist[j];
 	while (scan != NULL) {
 	    if (scan->next != NULL) {
-		diff = (long) scan - (long) scan->next;
+		diff = (intptr_t) scan - (intptr_t) scan->next;
 		nextsubtotal += (double) ddAbs(diff);
 		nextmeasured += 1.0;
 	    }
@@ -3037,7 +3037,7 @@ dp2(
     g = Cudd_Regular(f);
     if (cuddIsConstant(g)) {
 #if SIZEOF_VOID_P == 8
-	(void) fprintf(dd->out,"ID = %c0x%lx\tvalue = %-9g\n", bang(f),
+	(void) fprintf(dd->out,"ID = %c0x%llx\tvalue = %-9g\n", bang(f),
 		(ptruint) g / (ptruint) sizeof(DdNode),cuddV(g));
 #else
 	(void) fprintf(dd->out,"ID = %c0x%x\tvalue = %-9g\n", bang(f),
@@ -3060,7 +3060,7 @@ dp2(
 #endif
 #else
 #if SIZEOF_VOID_P == 8
-    (void) fprintf(dd->out,"ID = %c0x%lx\tindex = %u\t", bang(f),
+    (void) fprintf(dd->out,"ID = %c0x%llx\tindex = %u\t", bang(f),
 		(ptruint) g / (ptruint) sizeof(DdNode),g->index);
 #else
     (void) fprintf(dd->out,"ID = %c0x%x\tindex = %hu\t", bang(f),
@@ -3073,7 +3073,7 @@ dp2(
 	T = 1;
     } else {
 #if SIZEOF_VOID_P == 8
-	(void) fprintf(dd->out,"T = 0x%lx\t",(ptruint) n / (ptruint) sizeof(DdNode));
+	(void) fprintf(dd->out,"T = 0x%llx\t",(ptruint) n / (ptruint) sizeof(DdNode));
 #else
 	(void) fprintf(dd->out,"T = 0x%x\t",(ptruint) n / (ptruint) sizeof(DdNode));
 #endif
@@ -3087,7 +3087,7 @@ dp2(
 	E = 1;
     } else {
 #if SIZEOF_VOID_P == 8
-	(void) fprintf(dd->out,"E = %c0x%lx\n", bang(n), (ptruint) N/(ptruint) sizeof(DdNode));
+	(void) fprintf(dd->out,"E = %c0x%llx\n", bang(n), (ptruint) N/(ptruint) sizeof(DdNode));
 #else
 	(void) fprintf(dd->out,"E = %c0x%x\n", bang(n), (ptruint) N/(ptruint) sizeof(DdNode));
 #endif

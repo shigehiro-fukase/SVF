@@ -242,13 +242,8 @@ typedef struct DdHook {		/* hook list element */
     struct DdHook *next;	/* next element in the list */
 } DdHook;
 
-#if SIZEOF_VOID_P == 8 && SIZEOF_INT == 4
-typedef long ptrint;
-typedef unsigned long ptruint;
-#else
-typedef int ptrint;
-typedef unsigned int ptruint;
-#endif
+typedef intptr_t ptrint;
+typedef uintptr_t ptruint;
 
 typedef DdNode *DdNodePtr;
 
@@ -431,7 +426,7 @@ struct DdManager {	/* specialized DD symbol table */
     unsigned long maxmemhard;	/* hard limit for maximum memory */
     int garbageCollections;	/* number of garbage collections */
     unsigned long GCTime;	/* total time spent in garbage collection */
-    unsigned long reordTime;	/* total time spent in reordering */
+    uintptr_t reordTime;	/* total time spent in reordering */
     double totCachehits;	/* total number of cache hits */
     double totCacheMisses;	/* total number of cache misses */
     double cachecollisions;	/* number of cache collisions */

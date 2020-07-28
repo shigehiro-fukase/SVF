@@ -13,12 +13,16 @@ if(NOT COMMAND add_llvm_library)
         # We need to match the build environment for LLVM:
         # In particular, we need C++11 and the -fno-rtti flag
         set(CMAKE_CXX_STANDARD 14)
-	if(CMAKE_BUILD_TYPE MATCHES "Debug")
-		set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++14 -g -O0 -fno-rtti -Wno-deprecated")
-	else()
-		set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++14 -O3 -fno-rtti -Wno-deprecated")
-	endif()
-	set(CMAKE_C_FLAGS "-fPIC")
+        if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+	    if(CMAKE_BUILD_TYPE MATCHES "Debug")
+		    set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++14 -g -O0 -fno-rtti -Wno-deprecated")
+	    else()
+		    set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++14 -O3 -fno-rtti -Wno-deprecated")
+	    endif()
+	    set(CMAKE_C_FLAGS "-fPIC")
+        else()
+            set(CMAKE_CXX_FLAGS "/wd4624 /wd4244 /wd4141")
+        endif()
 
 	find_package(LLVM REQUIRED CONFIG)
         

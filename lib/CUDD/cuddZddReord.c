@@ -176,7 +176,7 @@ Cudd_zddReduceHeap(
     unsigned int initialSize;
     unsigned int finalSize;
 #endif
-    unsigned long localTime;
+    uintptr_t localTime;
 
     /* Don't reorder if there are too many dead nodes. */
     if (table->keysZ - table->deadZ < (unsigned) minsize)

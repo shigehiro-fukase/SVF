@@ -47,7 +47,7 @@ public:
     typedef NodeID LocID;
     typedef typename PTData<Key,Data>::PtsMap PtsMap;
     typedef typename PTData<Key,Data>::PtsMapConstIter PtsMapConstIter;
-    typedef DenseMap<LocID, PtsMap> DFPtsMap;	///< Data-flow point-to map
+    typedef llvm::DenseMap<LocID, PtsMap> DFPtsMap;	///< Data-flow point-to map
     typedef typename DFPtsMap::iterator DFPtsMapIter;
     typedef typename DFPtsMap::const_iterator DFPtsMapconstIter;
     typedef typename PTData<Key,Data>::PTDataTY PTDataTy;
@@ -296,7 +296,7 @@ class IncDFPTData : public DFPTData<Key,Data>
 {
 public:
     typedef typename DFPTData<Key,Data>::LocID LocID;
-    typedef DenseMap<LocID, Data> UpdatedVarMap;	///< for propagating only newly added variable in IN/OUT set
+    typedef llvm::DenseMap<LocID, Data> UpdatedVarMap;	///< for propagating only newly added variable in IN/OUT set
     typedef typename UpdatedVarMap::iterator UpdatedVarMapIter;
     typedef typename UpdatedVarMap::const_iterator UpdatedVarconstIter;
     typedef typename PTData<Key,Data>::PTDataTY PTDataTy;

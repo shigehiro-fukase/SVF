@@ -167,6 +167,7 @@ public:
         }
         else
             assert(false && "no other kind!");
+	return nullptr;
     }
 
     ///Add a PAG edge into Edge map

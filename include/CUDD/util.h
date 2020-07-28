@@ -3,6 +3,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -30,7 +32,7 @@ extern "C" {
 #endif
 
 #if SIZEOF_VOID_P == 8 && SIZEOF_INT == 4
-typedef long util_ptrint;
+typedef intptr_t util_ptrint;
 #else
 typedef int util_ptrint;
 #endif
@@ -39,7 +41,9 @@ typedef int util_ptrint;
 
 /* these are too entrenched to get away with changing the name */
 #define strsav		util_strsav
+#ifndef _MSC_VER
 #include <unistd.h>
+#endif
 
 #define NIL(type)		((type *) 0)
 
@@ -95,14 +99,17 @@ typedef int util_ptrint;
 /* No machines seem to have much of a problem with these */
 #include <stdio.h>
 #include <ctype.h>
-
+#ifdef _MSC_VER
+#include <string.h>
+#include <stdlib.h>
+#endif
 
 /* Some machines fail to define some functions in stdio.h */
+#ifndef _MSC_VER
 #if !defined(__STDC__) && !defined(__cplusplus)
 extern FILE *popen(), *tmpfile();
 extern int pclose();
 #endif
-
 
 /* most machines don't give us a header file for these */
 #if (defined(__STDC__) || defined(__cplusplus) || defined(ultrix)) && !defined(MNEMOSYNE) || defined(__SVR4)
@@ -120,7 +127,6 @@ extern int pclose();
   extern double atof();
 #endif
 
-
 /* some call it strings.h, some call it string.h; others, also have memory.h */
 #if defined(__STDC__) || defined(__cplusplus) || defined(_IBMR2) || defined(ultrix)
 #include <string.h>
@@ -132,7 +138,7 @@ extern int strcoll(), strxfrm(), strncmp(), strlen(), strspn(), strcspn();
 extern char *memmove(), *memccpy(), *memchr(), *memcpy(), *memset();
 extern int memcmp(), strcmp();
 #endif
-
+#endif // _MSC_VER
 
 #ifdef __STDC__
 #include <assert.h>

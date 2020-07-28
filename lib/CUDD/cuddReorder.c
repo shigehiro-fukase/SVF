@@ -181,7 +181,7 @@ Cudd_ReduceHeap(
     unsigned int initialSize;
     unsigned int finalSize;
 #endif
-    unsigned long localTime;
+    uintptr_t localTime;
 
     /* Don't reorder if there are too many dead nodes. */
     if (table->keys - table->dead < (unsigned) minsize)
@@ -452,7 +452,7 @@ cuddDynamicAllocNode(
 	    ** power of 2 and a multiple of the size of a pointer.
 	    ** If we align one node, all the others will be aligned
 	    ** as well. */
-	    offset = (unsigned long) mem & (sizeof(DdNode) - 1);
+	    offset = (uintptr_t) mem & (sizeof(DdNode) - 1);
 	    mem += (sizeof(DdNode) - offset) / sizeof(DdNodePtr);
 #ifdef DD_DEBUG
 	    assert(((unsigned long) mem & (sizeof(DdNode) - 1)) == 0);

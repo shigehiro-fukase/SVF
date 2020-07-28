@@ -31,8 +31,9 @@
 #include "Util/SVFUtil.h"
 #include "SVF-FE/LLVMUtil.h"
 
-
+#ifndef _MSC_VER
 #include <cxxabi.h>   // for demangling
+#endif
 
 using namespace std;
 using namespace SVF;
@@ -157,7 +158,12 @@ struct cppUtil::DemangledName cppUtil::demangle(const string name)
     struct cppUtil::DemangledName dname;
 
     s32_t status;
+#ifndef _MSC_VER
     char *realname = abi::__cxa_demangle(name.c_str(), 0, 0, &status);
+#else
+    // Todo
+    char *realname = nullptr;
+#endif
     if (realname == NULL)
     {
         dname.className = "";
@@ -387,7 +393,12 @@ string cppUtil::getClassNameFromVtblObj(const Value *value)
 
     string vtblName = value->getName().str();
     s32_t status;
+#ifndef _MSC_VER
     char *realname = abi::__cxa_demangle(vtblName.c_str(), 0, 0, &status);
+#else
+    // Todo
+    char *realname = nullptr;
+#endif
     if (realname != NULL)
     {
         string realnameStr = string(realname);

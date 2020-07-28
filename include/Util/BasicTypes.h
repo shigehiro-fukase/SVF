@@ -214,7 +214,7 @@ template <typename KeyT, typename ValueT>
 using DenseMapPair = llvm::detail::DenseMapPair<KeyT, ValueT>;
 
 template <typename KeyT, typename ValueT,
-          typename KeyInfoT = DenseMapInfo<KeyT>,
+          typename KeyInfoT = llvm::DenseMapInfo<KeyT>,
           typename BucketT = DenseMapPair<KeyT, ValueT>>
 using DenseMap = llvm::DenseMap<KeyT, ValueT, KeyInfoT, BucketT>;
 

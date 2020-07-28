@@ -1996,7 +1996,7 @@ Cudd_SetMaxReorderings(
   SeeAlso     [Cudd_ReadReorderings]
 
 ******************************************************************************/
-long
+intptr_t
 Cudd_ReadReorderingTime(
   DdManager * dd)
 {
@@ -3828,7 +3828,7 @@ Cudd_StdPostReordHook(
   const char *str,
   void *data)
 {
-    unsigned long initialTime = (long) data;
+    uintptr_t initialTime = (intptr_t) data;
     int retval;
     unsigned long finalTime = util_cpu_time();
     double totalTimeSec = (double)(finalTime - initialTime) / 1000.0;

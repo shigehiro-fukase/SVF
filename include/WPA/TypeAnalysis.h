@@ -57,7 +57,7 @@ public:
     void initialize();
 
     /// Finalize analysis
-    virtual inline void finalize();
+    virtual void finalize();
 
     /// Resolve callgraph based on CHA
     void callGraphSolveBasedOnCHA(const CallSiteToFunPtrMap& callsites, CallEdgeMap& newEdges);
