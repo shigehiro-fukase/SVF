@@ -13,26 +13,65 @@ static llvm::cl::opt<std::string> InputFilename(cl::Positional,
 /*!
  * An example to print points-to set of an LLVM value
  */
-std::string printPts(PointerAnalysis* pta, Value* val)
+void dumpPts(PAG* pag, NodeID ptr, const PointsTo& pts)
 {
-    std::string str;
-    raw_string_ostream rawstr(str);
-
-    NodeID pNodeId = pta->getPAG()->getValueNode(val);
-    NodeBS& pts = pta->getPts(pNodeId);
-    for (NodeBS::iterator ii = pts.begin(), ie = pts.end();
-            ii != ie; ii++)
+    const PAGNode* node = pag->getPAGNode(ptr);
+    /// print the points-to set of node which has the maximum pts size.
+    if (SVFUtil::isa<DummyObjPN> (node))
     {
-        rawstr << " " << *ii << " ";
-        PAGNode* targetObj = pta->getPAG()->getPAGNode(*ii);
-        if(targetObj->hasValue())
-        {
-            rawstr << "(" <<*targetObj->getValue() << ")\t ";
-        }
+	return;
+    }
+    else if (!SVFUtil::isa<DummyValPN>(node) && !SVFModule::pagReadFromTXT())
+    {
+	StringRef Name = node->getValue()->getName();
+	if (Name.empty())
+	    return;
+	std::string SLoc(SVFUtil::getSourceLoc(node->getValue()));
+	if (SLoc.empty() || SLoc == "{  }")
+	    return;
+
+        outs() << "----------------------------------------------\n";
+        outs() << "##<" << Name << "> ";
+        outs() << "Source Loc: " << SVFUtil::getSourceLoc(node->getValue());
+    }
+    outs() << "\nPtr " << node->getId() << " ";
+
+    if (pts.empty())
+    {
+        outs() << "\t\tPointsTo: {empty}\n\n";
+    }
+    else
+    {
+        outs() << "\t\tPointsTo: { ";
+        for (PointsTo::iterator it = pts.begin(), eit = pts.end(); it != eit;
+                ++it)
+            outs() << *it << " ";
+        outs() << "}\n\n";
     }
 
-    return rawstr.str();
+    outs() << "";
 
+    for (NodeBS::iterator it = pts.begin(), eit = pts.end(); it != eit; ++it)
+    {
+        const PAGNode* node = pag->getPAGNode(*it);
+        if(SVFUtil::isa<ObjPN>(node) == false)
+            continue;
+        NodeID ptd = node->getId();
+        outs() << "!!Target NodeID " << ptd << "\t [";
+        const PAGNode* pagNode = pag->getPAGNode(ptd);
+        if (SVFUtil::isa<DummyValPN>(node))
+            outs() << "DummyVal\n";
+        else if (SVFUtil::isa<DummyObjPN>(node))
+            outs() << "Dummy Obj id: " << node->getId() << "]\n";
+        else
+        {
+            if(!SVFModule::pagReadFromTXT())
+            {
+                outs() << "<" << pagNode->getValue()->getName() << "> ";
+                outs() << "Source Loc: " << SVFUtil::getSourceLoc(pagNode->getValue()) << "] \n";
+            }
+        }
+    }
 }
 
 int main(int argc, char ** argv)
@@ -59,7 +98,16 @@ int main(int argc, char ** argv)
     /// Create Andersen's pointer analysis
     Andersen* ander = AndersenWaveDiff::createAndersenWaveDiff(pag);
 
-    ander->dumpAllPts();
+    DenseNodeSet pagNodes;
+    for(PAG::iterator it = pag->begin(), eit = pag->end(); it!=eit; it++)
+    {
+        pagNodes.insert(it->first);
+    }
+
+    for (NodeID n : pagNodes)
+    {
+        dumpPts(pag, n, ander->getPts(n));
+    }
     
     return 0;
 }
