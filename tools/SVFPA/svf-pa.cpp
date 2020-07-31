@@ -1,7 +1,8 @@
-#include "SVF-FE/LLVMUtil.h"
 #include "Graphs/SVFG.h"
 #include "WPA/Andersen.h"
+#include "SVF-FE/LLVMUtil.h"
 #include "SVF-FE/PAGBuilder.h"
+#include "DDA/DDAPass.h"
 
 using namespace llvm;
 using namespace std;
@@ -13,9 +14,15 @@ static llvm::cl::opt<std::string> InputFilename(cl::Positional,
 /*!
  * An example to print points-to set of an LLVM value
  */
-void dumpPts(PAG* pag, NodeID ptr, const PointsTo& pts)
+template <typename T>
+void dumpPts(T* solver, NodeID ptr, const PointsTo& pts)
 {
+    PAG* pag = solver->getPAG();
+    std::string outStr;
     const PAGNode* node = pag->getPAGNode(ptr);
+
+    StringRef Name;
+
     /// print the points-to set of node which has the maximum pts size.
     if (SVFUtil::isa<DummyObjPN> (node))
     {
@@ -23,55 +30,49 @@ void dumpPts(PAG* pag, NodeID ptr, const PointsTo& pts)
     }
     else if (!SVFUtil::isa<DummyValPN>(node) && !SVFModule::pagReadFromTXT())
     {
-	StringRef Name = node->getValue()->getName();
-	if (Name.empty())
-	    return;
+        Name = node->getValue()->getName();
 	std::string SLoc(SVFUtil::getSourceLoc(node->getValue()));
 	if (SLoc.empty() || SLoc == "{  }")
 	    return;
 
-        outs() << "----------------------------------------------\n";
-        outs() << "##<" << Name << "> ";
-        outs() << "Source Loc: " << SVFUtil::getSourceLoc(node->getValue());
-    }
-    outs() << "\nPtr " << node->getId() << " ";
-
-    if (pts.empty())
-    {
-        outs() << "\t\tPointsTo: {empty}\n\n";
-    }
-    else
-    {
-        outs() << "\t\tPointsTo: { ";
-        for (PointsTo::iterator it = pts.begin(), eit = pts.end(); it != eit;
-                ++it)
-            outs() << *it << " ";
-        outs() << "}\n\n";
+        if (Name.empty())
+        {
+            // How can we get the name of the node???
+        }
+        if (pag->isFunPtr(node->getId()))
+        {
+            for (auto ICS : pag->getIndCallSites(node->getId())) {
+                for (auto O : solver->getIndCSCallees(ICS)) {
+                    //outStr += O->getName();
+                }
+            }
+            //outStr += "CALL:";
+        }
+        outStr += ("##<" + Name.str() + "> ");
+        outStr += SVFUtil::getSourceLoc(node->getValue());
     }
 
-    outs() << "";
-
+    NodeID srcNodeId = node->getId();
+    int numTarget = 0;
     for (NodeBS::iterator it = pts.begin(), eit = pts.end(); it != eit; ++it)
     {
-        const PAGNode* node = pag->getPAGNode(*it);
-        if(SVFUtil::isa<ObjPN>(node) == false)
+        const PAGNode* n = pag->getPAGNode(*it);
+        if(SVFUtil::isa<ObjPN>(n) == false)
             continue;
-        NodeID ptd = node->getId();
-        outs() << "!!Target NodeID " << ptd << "\t [";
-        const PAGNode* pagNode = pag->getPAGNode(ptd);
-        if (SVFUtil::isa<DummyValPN>(node))
-            outs() << "DummyVal\n";
-        else if (SVFUtil::isa<DummyObjPN>(node))
-            outs() << "Dummy Obj id: " << node->getId() << "]\n";
-        else
+        StringRef TargetName = n->getValue()->getName();
+        if (TargetName != Name)
         {
-            if(!SVFModule::pagReadFromTXT())
-            {
-                outs() << "<" << pagNode->getValue()->getName() << "> ";
-                outs() << "Source Loc: " << SVFUtil::getSourceLoc(pagNode->getValue()) << "] \n";
-            }
+            outStr += "\n\t ->";
+            outStr += (" <" +  TargetName.str() + "> ");
+            outStr += SVFUtil::getSourceLoc(n->getValue());
+            numTarget++;
         }
     }
+    if (numTarget != 0 && !outStr.empty()) {
+        outStr += "\n";
+        outs() << outStr;
+    }
+
 }
 
 int main(int argc, char ** argv)
@@ -91,12 +92,11 @@ int main(int argc, char ** argv)
 
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
+#if 1
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
-
-    /// Create Andersen's pointer analysis
-    Andersen* ander = AndersenWaveDiff::createAndersenWaveDiff(pag);
+    auto* solver = AndersenWaveDiff::createAndersenWaveDiff(pag);
 
     DenseNodeSet pagNodes;
     for(PAG::iterator it = pag->begin(), eit = pag->end(); it!=eit; it++)
@@ -104,10 +104,19 @@ int main(int argc, char ** argv)
         pagNodes.insert(it->first);
     }
 
+    //solver->printIndCSTargets();
+
     for (NodeID n : pagNodes)
     {
-        dumpPts(pag, n, ander->getPts(n));
+        dumpPts(solver, n, solver->getPts(n));
     }
-    
+#else
+    if (auto *opt = static_cast<llvm::cl::bits<PointerAnalysis::PTATY> *>(
+	llvm::cl::getRegisteredOptions().lookup("dfs"))) {
+        opt->addValue(PointerAnalysis::FlowS_DDA);
+    }
+    DDAPass *dda = new DDAPass();
+    dda->runOnModule(svfModule);
+#endif
     return 0;
 }
