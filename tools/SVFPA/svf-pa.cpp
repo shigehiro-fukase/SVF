@@ -98,17 +98,13 @@ class AccessVariable {
   std::vector<std::pair<const Value *, Location>> TargetLocs;
 
 public:
-  AccessVariable(const Value *V, bool FP) : AccessVariable() {
-    if (getLocation(Loc, Type, V, FP)) {
-      Valid = true;
-    }
-  }
+  AccessVariable(const PAGNode *N, bool FP) : AccessVariable() { set(N, FP); }
   AccessVariable() : Valid(false), Type(InstType::UNKNOWN) {}
   ~AccessVariable() = default;
 
   static std::string getSourceFileName(StringRef S);
 
-  void dump();
+  void dump(void);
 
   void set(const PAGNode *N, bool FP) {
     if (getLocation(Loc, Type, N->getValue(), false)) {
@@ -120,8 +116,8 @@ public:
     SourceValue = N->getValue();
     Func = N->getFunction();
   }
-  const Value *getValue() const { return SourceValue; }
-  const SVF::Function *getFunction() const { return Func; }
+  const Value *getValue(void) const { return SourceValue; }
+  const SVF::Function *getFunction(void) const { return Func; }
   void setType(InstType T) { Type = T; }
   void setLocation(Location &L) { Loc = L; }
   void setLocation(uint32_t line, uint32_t col, StringRef S) {
@@ -129,12 +125,14 @@ public:
     Loc.Column = col;
     Loc.SourceFile = S;
   }
-  InstType getType() const { return Type; }
-  std::string getFilename() const { return getSourceFileName(Loc.SourceFile); }
-  uint32_t getLine() const { return Loc.Line; }
-  uint32_t getColumn() const { return Loc.Column; }
-  bool isValid() const { return Valid; }
-  bool isFunctionCall() const { return Type == InstType::CALL; }
+  InstType getType(void) const { return Type; }
+  std::string getFilename(void) const {
+    return getSourceFileName(Loc.SourceFile);
+  }
+  uint32_t getLine(void) const { return Loc.Line; }
+  uint32_t getColumn(void) const { return Loc.Column; }
+  bool isValid(void) const { return Valid; }
+  bool isFunctionCall(void) const { return Type == InstType::CALL; }
 
   StringRef getAccessTypeName() const {
     if (Type == InstType::CALL)
@@ -156,7 +154,7 @@ public:
   }
 };
 
-void AccessVariable::dump() {
+void AccessVariable::dump(void) {
   if (!isValid())
     return;
 
@@ -187,46 +185,29 @@ std::string AccessVariable::getSourceFileName(StringRef S) {
   return "";
 }
 
-/*!
- * An example to print points-to set of an LLVM value
- */
 template <typename T> void dumpPts(T *solver, NodeID ptr, const PointsTo &pts) {
   PAG *pag = solver->getPAG();
-  std::string outStr;
   const PAGNode *node = pag->getPAGNode(ptr);
 
-  StringRef Name;
-  AccessVariable Var;
-
-  /// print the points-to set of node which has the maximum pts size.
-  if (SVFUtil::isa<DummyObjPN>(node)) {
+  if (SVFUtil::isa<DummyObjPN>(node) || SVFUtil::isa<DummyValPN>(node)) {
     return;
-  } else if (!SVFUtil::isa<DummyValPN>(node)) {
-    if (!node->isPointer())
-      return;
-
-    Name = node->getValue()->getName();
-    if (!Name.empty() && Name.find(".addr") != StringRef::npos) {
-      return;
-    }
-
-    const SVF::Function *F = node->getFunction();
-    if (F == nullptr)
-      return;
-
-    bool isFuncPtr = pag->isFunPtr(node->getId());
-
-    Var.set(node, isFuncPtr);
-    if (!Var.isValid())
-      return;
   }
 
-  NodeID srcNodeId = node->getId();
+  // Ignore nodes except for pointer
+  if (!node->isPointer())
+    return;
+
+  AccessVariable Var(node, pag->isFunPtr(node->getId()));
+  if (!Var.isValid())
+    return;
+
+  // Find variable(s) or function(s) where the node points-to
   for (NodeBS::iterator it = pts.begin(), eit = pts.end(); it != eit; ++it) {
     const PAGNode *n = pag->getPAGNode(*it);
-    if (SVFUtil::isa<ObjPN>(n) == false)
+    if (!SVFUtil::isa<ObjPN>(n))
       continue;
     StringRef TargetName = n->getValue()->getName();
+    StringRef Name = node->getValue()->getName();
     if (TargetName != Name) {
       Var.addTarget(n);
     }
