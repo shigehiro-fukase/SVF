@@ -182,7 +182,7 @@ std::string AccessVariable::getSourceFileName(StringRef S) {
   if (Pos != std::string::npos) {
     return S.drop_front(Pos + 1);
   }
-  return "";
+  return S;
 }
 
 template <typename T> void dumpPts(T *solver, NodeID ptr, const PointsTo &pts) {
