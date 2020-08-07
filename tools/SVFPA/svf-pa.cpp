@@ -206,10 +206,12 @@ template <typename T> void dumpPts(T *solver, NodeID ptr, const PointsTo &pts) {
     const PAGNode *n = pag->getPAGNode(*it);
     if (!SVFUtil::isa<ObjPN>(n))
       continue;
-    StringRef TargetName = n->getValue()->getName();
-    StringRef Name = node->getValue()->getName();
-    if (TargetName != Name) {
-      Var.addTarget(n);
+    if (n->hasValue()) {
+      StringRef TargetName = n->getValue()->getName();
+      StringRef Name = node->getValue()->getName();
+      if (TargetName != Name) {
+        Var.addTarget(n);
+      }
     }
   }
   Var.dump();
