@@ -133,6 +133,7 @@ public:
   uint32_t getColumn(void) const { return Loc.Column; }
   bool isValid(void) const { return Valid; }
   bool isFunctionCall(void) const { return Type == InstType::CALL; }
+  bool hasTargets(void) const { return TargetLocs.size() > 0; }
 
   StringRef getAccessTypeName() const {
     if (Type == InstType::CALL)
@@ -170,7 +171,7 @@ void AccessVariable::dump(void) {
       llvm::outs() << T.first->getName().str() << ","
                    << getSourceFileName(T.second.SourceFile) << ",";
       // Source
-      llvm::outs() << getAccessTypeName() << "??," << getFilename() << ","
+      llvm::outs() << getAccessTypeName() << "," << getFilename() << ","
                    << getLine() << "," << getColumn();
     }
     llvm::outs() << "\n";
@@ -185,7 +186,8 @@ std::string AccessVariable::getSourceFileName(StringRef S) {
   return S;
 }
 
-template <typename T> void dumpPts(T *solver, NodeID ptr, const PointsTo &pts) {
+template <typename T>
+void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts) {
   PAG *pag = solver->getPAG();
   const PAGNode *node = pag->getPAGNode(ptr);
 
@@ -211,6 +213,20 @@ template <typename T> void dumpPts(T *solver, NodeID ptr, const PointsTo &pts) {
       StringRef Name = node->getValue()->getName();
       if (TargetName != Name) {
         Var.addTarget(n);
+      }
+    }
+  }
+  // Try to identify the access type
+  if (Var.hasTargets()) {
+    auto Def = svfg->getDefSVFGNode(node);
+    for (auto OE : Def->getOutEdges()) {
+      const auto Dest = OE->getDstNode();
+      if (Dest->getNodeKind() == VFGNode::Load) {
+        Var.setType(InstType::LOAD);
+      } else if (Dest->getNodeKind() == VFGNode::Store) {
+        Var.setType(InstType::STORE);
+      } else {
+        Var.setType(InstType::LOAD);
       }
     }
   }
@@ -245,10 +261,11 @@ int main(int argc, char **argv) {
     pagNodes.insert(it->first);
   }
 
-  // solver->printIndCSTargets();
+  SVFGBuilder svfBuilder;
+  SVFG *svfg = svfBuilder.buildFullSVFGWithoutOPT(solver);
 
   for (NodeID n : pagNodes) {
-    dumpPts(solver, n, solver->getPts(n));
+    dumpPts(solver, svfg, n, solver->getPts(n));
   }
 #else
   if (auto *opt = static_cast<llvm::cl::bits<PointerAnalysis::PTATY> *>(
