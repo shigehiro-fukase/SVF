@@ -221,10 +221,29 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts) {
     auto Def = svfg->getDefSVFGNode(node);
     for (auto OE : Def->getOutEdges()) {
       const auto Dest = OE->getDstNode();
-      if (Dest->getNodeKind() == VFGNode::Load) {
+      if (auto E = SVFUtil::dyn_cast<LoadVFGNode>(Dest)) {
         Var.setType(InstType::LOAD);
-      } else if (Dest->getNodeKind() == VFGNode::Store) {
+      } else if (auto E = SVFUtil::dyn_cast<StoreVFGNode>(Dest)) {
         Var.setType(InstType::STORE);
+        // Both dest and src are pointer nodes.
+        if (E->isPTANode()) {
+          if (auto inst = SVFUtil::dyn_cast<Instruction>(
+                  E->getPAGDstNode()->getValue())) {
+            if (SVFUtil::isa<AllocaInst>(inst)) {
+              for (llvm::DbgInfoIntrinsic *DII :
+                   FindDbgAddrUses(const_cast<Instruction *>(inst))) {
+                if (llvm::DbgDeclareInst *DDI =
+                        SVFUtil::dyn_cast<llvm::DbgDeclareInst>(DII)) {
+                  // We identify the access type as LOAD, if a STORE destination
+                  // node is a local variable
+                  if (isa<DILocalVariable>(DDI->getVariable())) {
+                    Var.setType(InstType::LOAD);
+                  }
+                }
+              }
+            }
+          }
+        }
       } else {
         Var.setType(InstType::LOAD);
       }
