@@ -13,6 +13,10 @@ static llvm::cl::opt<std::string>
     InputFilename(cl::Positional, llvm::cl::desc("<input bitcode>"),
                   llvm::cl::init("-"));
 
+static llvm::cl::opt<bool>
+    SaveFile("save",
+             llvm::cl::desc("Save access type and call information to file"));
+
 typedef struct _Location {
   uint32_t Line;
   uint32_t Column;
@@ -88,7 +92,30 @@ bool getLocation(Location &Loc, InstType &Type, const Value *val,
   return false;
 }
 
-class AccessVariable {
+class SVFPAContext {
+  bool SaveFile;
+  llvm::raw_fd_ostream *OSFuncCalls;
+  llvm::raw_fd_ostream *OSVarAccess;
+
+public:
+  SVFPAContext() : SVFPAContext(nullptr, nullptr, false) {}
+
+  SVFPAContext(llvm::raw_fd_ostream *OSF, llvm::raw_fd_ostream *OSV, bool Save)
+      : OSFuncCalls(OSF), OSVarAccess(OSV), SaveFile(Save) {}
+
+  ~SVFPAContext() {
+    if (OSFuncCalls)
+      OSFuncCalls->close();
+    if (OSVarAccess)
+      OSVarAccess->close();
+  }
+
+  bool isSaveFile() { return SaveFile; }
+  llvm::raw_fd_ostream &getOSFuncCall() { return *OSFuncCalls; }
+  llvm::raw_fd_ostream &getOSVarAccess() { return *OSVarAccess; }
+};
+
+class VariableAccess {
   InstType Type;
   Location Loc;
   bool Valid;
@@ -98,13 +125,14 @@ class AccessVariable {
   std::vector<std::pair<const Value *, Location>> TargetLocs;
 
 public:
-  AccessVariable(const PAGNode *N, bool FP) : AccessVariable() { set(N, FP); }
-  AccessVariable() : Valid(false), Type(InstType::UNKNOWN) {}
-  ~AccessVariable() = default;
+  VariableAccess(const PAGNode *N, bool FP) : VariableAccess() { set(N, FP); }
+  VariableAccess() : Valid(false), Type(InstType::UNKNOWN) {}
+  ~VariableAccess() = default;
 
   static std::string getSourceFileName(StringRef S);
 
   void dump(void);
+  void save(SVFPAContext &context);
 
   void set(const PAGNode *N, bool FP) {
     if (getLocation(Loc, Type, N->getValue(), false)) {
@@ -155,7 +183,7 @@ public:
   }
 };
 
-void AccessVariable::dump(void) {
+void VariableAccess::dump(void) {
   if (!isValid())
     return;
 
@@ -178,7 +206,30 @@ void AccessVariable::dump(void) {
   }
 }
 
-std::string AccessVariable::getSourceFileName(StringRef S) {
+void VariableAccess::save(SVFPAContext &context) {
+  if (!isValid() || TargetLocs.empty())
+    return;
+
+  llvm::raw_fd_ostream &OSF(context.getOSFuncCall());
+  llvm::raw_fd_ostream &OSV(context.getOSVarAccess());
+
+  for (auto T : TargetLocs) {
+    if (isFunctionCall()) {
+      OSF << getFunction()->getName().str() << "," << getFilename() << ","
+          << getLine() << "," << getColumn() << "," << T.first->getName().str()
+          << "," << T.second.Line << "," << T.second.Column;
+      OSF << "\n";
+    } else {
+      OSV << T.first->getName().str() << ","
+          << getSourceFileName(T.second.SourceFile) << ",";
+      OSV << getAccessTypeName() << "," << getFilename() << "," << getLine()
+          << "," << getColumn();
+      OSV << "\n";
+    }
+  }
+}
+
+std::string VariableAccess::getSourceFileName(StringRef S) {
   auto Pos = S.find_last_of('\\');
   if (Pos != std::string::npos) {
     return S.drop_front(Pos + 1);
@@ -187,7 +238,8 @@ std::string AccessVariable::getSourceFileName(StringRef S) {
 }
 
 template <typename T>
-void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts) {
+void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts,
+             SVFPAContext &context) {
   PAG *pag = solver->getPAG();
   const PAGNode *node = pag->getPAGNode(ptr);
 
@@ -199,7 +251,7 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts) {
   if (!node->isPointer())
     return;
 
-  AccessVariable Var(node, pag->isFunPtr(node->getId()));
+  VariableAccess Var(node, pag->isFunPtr(node->getId()));
   if (!Var.isValid())
     return;
 
@@ -249,7 +301,11 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts) {
       }
     }
   }
-  Var.dump();
+  if (context.isSaveFile()) {
+    Var.save(context);
+  } else {
+    Var.dump();
+  }
 }
 
 int main(int argc, char **argv) {
@@ -283,9 +339,21 @@ int main(int argc, char **argv) {
   SVFGBuilder svfBuilder;
   SVFG *svfg = svfBuilder.buildFullSVFGWithoutOPT(solver);
 
-  for (NodeID n : pagNodes) {
-    dumpPts(solver, svfg, n, solver->getPts(n));
+  if (SaveFile) {
+    std::error_code EC;
+    llvm::raw_fd_ostream OSF("Output_Call.csv", EC, llvm::sys::fs::F_None);
+    llvm::raw_fd_ostream OSV("Output_VarAccess.csv", EC, llvm::sys::fs::F_None);
+    SVFPAContext context(&OSF, &OSV, SaveFile);
+    for (NodeID n : pagNodes) {
+      dumpPts(solver, svfg, n, solver->getPts(n), context);
+    }
+  } else {
+    SVFPAContext context;
+    for (NodeID n : pagNodes) {
+      dumpPts(solver, svfg, n, solver->getPts(n), context);
+    }
   }
+
 #else
   if (auto *opt = static_cast<llvm::cl::bits<PointerAnalysis::PTATY> *>(
           llvm::cl::getRegisteredOptions().lookup("dfs"))) {
