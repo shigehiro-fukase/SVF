@@ -84,9 +84,11 @@ bool getLocation(Location &Loc, InstType &Type, const Value *val,
       if (llvm::DISubprogram *SP = func->getSubprogram()) {
         if (SP->describes(func)) {
           Loc.setLocation(SP->getLine(), 0, SP->getFilename());
-          return true;
         }
+      } else {
+        Loc.setLocation(-1, 0, "#External");
       }
+      return true;
     }
   }
   return false;
@@ -189,18 +191,30 @@ void VariableAccess::dump(void) {
 
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
+      uint32_t line = T.second.Line;
       llvm::outs() << "<FuncCall>:  ";
       llvm::outs() << getFunction()->getName().str() << "," << getFilename()
                    << "," << getLine() << "," << getColumn() << ","
-                   << T.first->getName().str() << "," << T.second.Line << ","
-                   << T.second.Column;
+                   << T.first->getName().str() << ",";
+      if (line == (uint32_t)-1) {
+        llvm::outs() << "N/A";
+      } else {
+        llvm::outs() << line;
+      }
+      llvm::outs() << "," << T.second.Column;
     } else {
       llvm::outs() << "<VarAccess>: ";
       llvm::outs() << T.first->getName().str() << ","
                    << getSourceFileName(T.second.SourceFile) << ",";
       // Source
-      llvm::outs() << getAccessTypeName() << "," << getFilename() << ","
-                   << getLine() << "," << getColumn();
+      llvm::outs() << getAccessTypeName() << "," << getFilename() << ",";
+      uint32_t line = getLine();
+      if (line == (uint32_t)-1) {
+        llvm::outs() << "N/A";
+      } else {
+        llvm::outs() << line;
+      }
+      llvm::outs() << "," << getColumn();
     }
     llvm::outs() << "\n";
   }
