@@ -117,14 +117,20 @@ public:
   llvm::raw_fd_ostream &getOSVarAccess() { return *OSVarAccess; }
 };
 
+typedef struct {
+  Location Loc;
+  const Value *Val;
+  std::string AccessPtrName;
+} PTAVar;
+
 class VariableAccess {
   InstType Type;
   Location Loc;
   bool Valid;
-  const Value *SourceValue;
+  const PAGNode *SourceNode;
   const SVF::Function *Func;
 
-  std::vector<std::pair<const Value *, Location>> TargetLocs;
+  std::vector<PTAVar> TargetLocs;
 
 public:
   VariableAccess(const PAGNode *N, bool FP) : VariableAccess() { set(N, FP); }
@@ -143,10 +149,11 @@ public:
     if (FP) {
       Type = InstType::CALL;
     }
-    SourceValue = N->getValue();
+    SourceNode = N;
     Func = N->getFunction();
   }
-  const Value *getValue(void) const { return SourceValue; }
+  const Value *getValue(void) const { return SourceNode->getValue(); }
+  const PAGNode *getNode(void) const { return SourceNode; }
   const SVF::Function *getFunction(void) const { return Func; }
   void setType(InstType T) { Type = T; }
   void setLocation(Location &L) { Loc = L; }
@@ -175,12 +182,58 @@ public:
     return "UNKNOWN";
   }
 
+  static StringRef getAccessPtrName(const Value *V) {
+    StringRef Name;
+    if (auto LI = dyn_cast<LoadInst>(V)) {
+      if (auto *GEP = dyn_cast<GetElementPtrInst>(LI->getOperand(0))) {
+        Name = GEP->getOperand(0)->getName();
+        if (Name.empty()) {
+          return getAccessPtrName(GEP->getOperand(0));
+        }
+        if (!Name.empty() && Name[0] == '.') {
+          Name = "#Unknown";
+        }
+      } else if (LI->getOperand(0)->getType()->isPointerTy()) {
+        Name = LI->getOperand(0)->getName();
+        if (Name.empty()) {
+          if (auto *GEP = dyn_cast<GetElementPtrInst>(LI->getOperand(0))) {
+            Name = GEP->getOperand(0)->getName();
+          }
+        }
+      }
+    }
+    return Name;
+  }
+
+  static StringRef getAccessPtrName(const PAGNode *N) {
+    if (auto LI = dyn_cast<LoadInst>(N->getValue())) {
+      return getAccessPtrName(LI);
+    } else if (auto GEP = dyn_cast<GetElementPtrInst>(N->getValue())) {
+      StringRef Name = GEP->getOperand(0)->getName();
+      if (Name.empty()) {
+        for (auto E : N->getInEdges()) {
+          if (auto SrcNode = E->getSrcNode()) {
+            Name = getAccessPtrName(SrcNode);
+            if (!Name.empty()) {
+              break;
+            }
+          }
+        }
+      }
+      return Name;
+    }
+    return "";
+  }
+
   void addTarget(const PAGNode *N) {
     Location L;
     InstType T;
     if (getLocation(L, T, N->getValue(), true)) {
-      std::pair<const Value *, Location> P(N->getValue(), L);
-      TargetLocs.push_back(P);
+      PTAVar PV;
+      PV.Loc = L;
+      PV.Val = N->getValue();
+      PV.AccessPtrName = getAccessPtrName(getNode()).str();
+      TargetLocs.push_back(PV);
     }
   }
 };
@@ -191,30 +244,27 @@ void VariableAccess::dump(void) {
 
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
-      uint32_t line = T.second.Line;
+      uint32_t line = T.Loc.Line;
       llvm::outs() << "<FuncCall>:  ";
       llvm::outs() << getFunction()->getName().str() << "," << getFilename()
-                   << "," << getLine() << "," << getColumn() << ","
-                   << T.first->getName().str() << ",";
-      if (line == (uint32_t)-1) {
-        llvm::outs() << "N/A";
-      } else {
-        llvm::outs() << line;
-      }
-      llvm::outs() << "," << T.second.Column;
+                   << "," << getLine() << "," << getColumn() << ",";
+      llvm::outs() << T.AccessPtrName << ",";
+      llvm::outs() << T.Val->getName().str();
     } else {
       llvm::outs() << "<VarAccess>: ";
-      llvm::outs() << T.first->getName().str() << ","
-                   << getSourceFileName(T.second.SourceFile) << ",";
+      llvm::outs() << T.AccessPtrName << ",";
+      llvm::outs() << T.Val->getName().str() << ","
+                   << getSourceFileName(T.Loc.SourceFile) << ",";
       // Source
       llvm::outs() << getAccessTypeName() << "," << getFilename() << ",";
       uint32_t line = getLine();
+      uint32_t col  = getColumn();
       if (line == (uint32_t)-1) {
         llvm::outs() << "N/A";
       } else {
         llvm::outs() << line;
       }
-      llvm::outs() << "," << getColumn();
+      llvm::outs() << "," << col;
     }
     llvm::outs() << "\n";
   }
@@ -230,12 +280,11 @@ void VariableAccess::save(SVFPAContext &context) {
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
       OSF << getFunction()->getName().str() << "," << getFilename() << ","
-          << getLine() << "," << getColumn() << "," << T.first->getName().str()
-          << "," << T.second.Line << "," << T.second.Column;
+          << getLine() << "," << getColumn() << "," << T.Val->getName().str();
       OSF << "\n";
     } else {
-      OSV << T.first->getName().str() << ","
-          << getSourceFileName(T.second.SourceFile) << ",";
+      OSV << T.Val->getName().str() << ","
+          << getSourceFileName(T.Loc.SourceFile) << ",";
       OSV << getAccessTypeName() << "," << getFilename() << "," << getLine()
           << "," << getColumn();
       OSV << "\n";
