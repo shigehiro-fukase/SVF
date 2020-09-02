@@ -17,6 +17,10 @@ static llvm::cl::opt<bool>
     SaveFile("save",
              llvm::cl::desc("Save access type and call information to file"));
 
+static llvm::cl::opt<bool>
+    IgnoreGEP("ignore-gep",
+             llvm::cl::desc("Ignore getelementptr instructions"));
+
 typedef struct _Location {
   uint32_t Line;
   uint32_t Column;
@@ -233,6 +237,9 @@ public:
       PV.Loc = L;
       PV.Val = N->getValue();
       PV.AccessPtrName = getAccessPtrName(getNode()).str();
+      if (IgnoreGEP && isa<GetElementPtrInst>(getNode()->getValue())) {
+          return;
+      }
       TargetLocs.push_back(PV);
     }
   }
