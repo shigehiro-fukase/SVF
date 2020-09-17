@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddTable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddInit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddAPI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddRef.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddCheck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddUtil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddCof.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddSat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddReorder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddAddIte.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddBddIte.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddBddAbs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddReord.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\safe_mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\mtrBasic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\mtrGroup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddCache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddLCache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddInteract.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddGroup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddAnneal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddExact.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddGenetic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddLinear.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddSymmetry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddWindow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddFuncs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddGroup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddIsop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddSetop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddLin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cuddZddSymm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\datalimit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\cpu_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\epd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\work\git\SVF\lib\CUDD\st.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\work\git\SVF\lib\CUDD\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{76705FE0-4DD9-3543-9D79-F68D8BE80BE0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

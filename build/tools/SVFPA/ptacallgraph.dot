@@ -1,0 +1,12 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x1d9c71bb790 [shape=record,shape=circle,label="{dummy_function}"];
+	Node0x1d9c71bafb0 [shape=record,shape=circle,label="{function|{<s0>1}}"];
+	Node0x1d9c71bafb0:s0 -> Node0x1d9c71bb790[color=black];
+	Node0x1d9c71bbb80 [shape=record,shape=circle,label="{main|{<s0>2}}"];
+	Node0x1d9c71bbb80:s0 -> Node0x1d9c71ba740[color=black];
+	Node0x1d9c71bb280 [shape=record,shape=Mrecord,label="{llvm.dbg.declare}"];
+	Node0x1d9c71ba740 [shape=record,shape=circle,label="{Function|{<s0>3}}"];
+	Node0x1d9c71ba740:s0 -> Node0x1d9c71bafb0[color=red];
+}

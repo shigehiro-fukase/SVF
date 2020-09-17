@@ -1,0 +1,704 @@
+[
+        {
+                "ICFGEdges": [],
+                "ICFG_ID": 0,
+                "Node Type": ""
+        },
+        {
+                "Function Name": "Function",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 27,
+                                "ICFGEdgeSrcID": 26
+                        }
+                ],
+                "ICFG_ID": 26,
+                "Node Type": "FunEntryBlock",
+                "Source Location": "{ in line: 41 file: svf-sample.c }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 8,
+                                "ICFGEdgeSrcID": 7
+                        }
+                ],
+                "ICFG_ID": 7,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 29 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 34,
+                                "ICFGEdgeSrcID": 33
+                        }
+                ],
+                "ICFG_ID": 33,
+                "Node Type": "FunRetBlock",
+                "Source Location": "{ ln: 43 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 15,
+                                "ICFGEdgeSrcID": 14
+                        }
+                ],
+                "ICFG_ID": 14,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 49,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Load",
+                                "Source Node": 48,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": ""
+                        }
+                ],
+                "Source Location": "{ ln: 32 fl: svf-sample.c }"
+        },
+        {
+                "Function Name": "main",
+                "ICFGEdges": [],
+                "ICFG_ID": 40,
+                "Node Type": "FunExitBlock",
+                "Source Location": "{ Can only get source location for instruction, argument, global var or function. }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 22,
+                                "ICFGEdgeSrcID": 21
+                        }
+                ],
+                "ICFG_ID": 21,
+                "Node Type": "FunRetBlock",
+                "Source Location": "{ ln: 33 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 3,
+                                "ICFGEdgeSrcID": 2
+                        }
+                ],
+                "ICFG_ID": 2,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 21,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Addr",
+                                "Source Node": 22,
+                                "Source Type": "FIObjNode",
+                                "dstValueName": "arg.addr",
+                                "srcValueName": "arg.addr (base object)"
+                        }
+                ],
+                "Source Location": "{ ln: 26 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 29,
+                                "ICFGEdgeSrcID": 28
+                        }
+                ],
+                "ICFG_ID": 28,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 64,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Store",
+                                "Source Node": 63,
+                                "Source Type": "ValNode",
+                                "dstValueName": "parg.addr",
+                                "srcValueName": "parg"
+                        }
+                ],
+                "Source Location": "{  }"
+        },
+        {
+                "Function Name": "function",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 10,
+                                "ICFGEdgeSrcID": 9
+                        }
+                ],
+                "ICFG_ID": 9,
+                "Node Type": "FunEntryBlock",
+                "Source Location": "{ in line: 31 file: svf-sample.c }",
+                "isExtCall": false
+        },
+        {
+                "Function Name": "Function",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "RetCFGEdge",
+                                "ICFGEdgeDstID": 38,
+                                "ICFGEdgeSrcID": 35
+                        }
+                ],
+                "ICFG_ID": 35,
+                "Node Type": "FunExitBlock",
+                "Source Location": "{ Can only get source location for instruction, argument, global var or function. }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 17,
+                                "ICFGEdgeSrcID": 16
+                        }
+                ],
+                "ICFG_ID": 16,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 43,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Store",
+                                "Source Node": 50,
+                                "Source Type": "ValNode",
+                                "dstValueName": "Struct_LVar",
+                                "srcValueName": ""
+                        }
+                ],
+                "Source Location": "{ ln: 32 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 24,
+                                "ICFGEdgeSrcID": 23
+                        }
+                ],
+                "ICFG_ID": 23,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 35 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 5,
+                                "ICFGEdgeSrcID": 4
+                        }
+                ],
+                "ICFG_ID": 4,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{  }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 31,
+                                "ICFGEdgeSrcID": 30
+                        }
+                ],
+                "ICFG_ID": 30,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 69,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Load",
+                                "Source Node": 11,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": "pCallFunction"
+                        }
+                ],
+                "Source Location": "{ ln: 43 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 12,
+                                "ICFGEdgeSrcID": 11
+                        }
+                ],
+                "ICFG_ID": 11,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 43,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Addr",
+                                "Source Node": 44,
+                                "Source Type": "FIObjNode",
+                                "dstValueName": "Struct_LVar",
+                                "srcValueName": "Struct_LVar (base object)"
+                        }
+                ],
+                "Source Location": "{ ln: 32 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 38,
+                                "ICFGEdgeSrcID": 37
+                        },
+                        {
+                                "ICFG Edge Type": "CallCFGEdge",
+                                "ICFGEdgeDstID": 26,
+                                "ICFGEdgeSrcID": 37
+                        }
+                ],
+                "ICFG_ID": 37,
+                "Node Type": "FunCallBlock",
+                "Source Location": "{ ln: 47 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 19,
+                                "ICFGEdgeSrcID": 18
+                        }
+                ],
+                "ICFG_ID": 18,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 53,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "NormalGep",
+                                "Source Node": 52,
+                                "Source Type": "ValNode",
+                                "dstValueName": "st_mem1",
+                                "offset": 0,
+                                "srcValueName": ""
+                        }
+                ],
+                "Source Location": "{ ln: 33 fl: svf-sample.c }"
+        },
+        {
+                "Function Name": "function",
+                "ICFGEdges": [],
+                "ICFG_ID": 25,
+                "Node Type": "FunExitBlock",
+                "Source Location": "{ Can only get source location for instruction, argument, global var or function. }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 7,
+                                "ICFGEdgeSrcID": 6
+                        }
+                ],
+                "ICFG_ID": 6,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 28 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 33,
+                                "ICFGEdgeSrcID": 32
+                        }
+                ],
+                "ICFG_ID": 32,
+                "Node Type": "FunCallBlock",
+                "Source Location": "{ ln: 43 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 14,
+                                "ICFGEdgeSrcID": 13
+                        }
+                ],
+                "ICFG_ID": 13,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 48,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "NormalGep",
+                                "Source Node": 7,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "offset": 0,
+                                "srcValueName": "Dummy_GVar"
+                        }
+                ],
+                "Source Location": "{  }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 40,
+                                "ICFGEdgeSrcID": 39
+                        }
+                ],
+                "ICFG_ID": 39,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 48 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 21,
+                                "ICFGEdgeSrcID": 20
+                        },
+                        {
+                                "ICFG Edge Type": "CallCFGEdge",
+                                "ICFGEdgeDstID": 1,
+                                "ICFGEdgeSrcID": 20
+                        }
+                ],
+                "ICFG_ID": 20,
+                "Node Type": "FunCallBlock",
+                "Source Location": "{ ln: 33 fl: svf-sample.c }"
+        },
+        {
+                "Function Name": "dummy_function",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 2,
+                                "ICFGEdgeSrcID": 1
+                        }
+                ],
+                "ICFG_ID": 1,
+                "Node Type": "FunEntryBlock",
+                "Source Location": "{ in line: 26 file: svf-sample.c }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 28,
+                                "ICFGEdgeSrcID": 27
+                        }
+                ],
+                "ICFG_ID": 27,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 64,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Addr",
+                                "Source Node": 65,
+                                "Source Type": "FIObjNode",
+                                "dstValueName": "parg.addr",
+                                "srcValueName": "parg.addr (base object)"
+                        }
+                ],
+                "Source Location": "{ ln: 41 fl: svf-sample.c }"
+        },
+        {
+                "Function Name": "dummy_function",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "RetCFGEdge",
+                                "ICFGEdgeDstID": 21,
+                                "ICFGEdgeSrcID": 8
+                        }
+                ],
+                "ICFG_ID": 8,
+                "Node Type": "FunExitBlock",
+                "Source Location": "{ Can only get source location for instruction, argument, global var or function. }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 35,
+                                "ICFGEdgeSrcID": 34
+                        }
+                ],
+                "ICFG_ID": 34,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 44 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 16,
+                                "ICFGEdgeSrcID": 15
+                        }
+                ],
+                "ICFG_ID": 15,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 50,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Copy",
+                                "Source Node": 49,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": ""
+                        }
+                ],
+                "Source Location": "{ ln: 32 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 23,
+                                "ICFGEdgeSrcID": 22
+                        }
+                ],
+                "ICFG_ID": 22,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 56,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Load",
+                                "Source Node": 41,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": "parg.addr"
+                        }
+                ],
+                "Source Location": "{ ln: 35 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 4,
+                                "ICFGEdgeSrcID": 3
+                        }
+                ],
+                "ICFG_ID": 3,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 23,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Addr",
+                                "Source Node": 24,
+                                "Source Type": "FIObjNode",
+                                "dstValueName": "dummy",
+                                "srcValueName": "dummy (base object)"
+                        }
+                ],
+                "Source Location": "{ ln: 27 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 30,
+                                "ICFGEdgeSrcID": 29
+                        }
+                ],
+                "ICFG_ID": 29,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 11,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Store",
+                                "Source Node": 37,
+                                "Source Type": "ValNode",
+                                "dstValueName": "pCallFunction",
+                                "srcValueName": "function"
+                        }
+                ],
+                "Source Location": "{ ln: 42 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 11,
+                                "ICFGEdgeSrcID": 10
+                        }
+                ],
+                "ICFG_ID": 10,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 41,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Addr",
+                                "Source Node": 42,
+                                "Source Type": "FIObjNode",
+                                "dstValueName": "parg.addr",
+                                "srcValueName": "parg.addr (base object)"
+                        }
+                ],
+                "Source Location": "{ ln: 31 fl: svf-sample.c }"
+        },
+        {
+                "Function Name": "main",
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 0,
+                                "ICFGEdgeSrcID": 36
+                        },
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 37,
+                                "ICFGEdgeSrcID": 36
+                        }
+                ],
+                "ICFG_ID": 36,
+                "Node Type": "FunEntryBlock",
+                "Source Location": "{ in line: 46 file: svf-sample.c }",
+                "isExtCall": false
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 18,
+                                "ICFGEdgeSrcID": 17
+                        }
+                ],
+                "ICFG_ID": 17,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 52,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Load",
+                                "Source Node": 43,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": "Struct_LVar"
+                        }
+                ],
+                "Source Location": "{ ln: 33 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 25,
+                                "ICFGEdgeSrcID": 24
+                        }
+                ],
+                "ICFG_ID": 24,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 36 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 6,
+                                "ICFGEdgeSrcID": 5
+                        }
+                ],
+                "ICFG_ID": 5,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 28 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 32,
+                                "ICFGEdgeSrcID": 31
+                        }
+                ],
+                "ICFG_ID": 31,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 70,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Load",
+                                "Source Node": 64,
+                                "Source Type": "ValNode",
+                                "dstValueName": "",
+                                "srcValueName": "parg.addr"
+                        }
+                ],
+                "Source Location": "{ ln: 43 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 13,
+                                "ICFGEdgeSrcID": 12
+                        }
+                ],
+                "ICFG_ID": 12,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [
+                        {
+                                "Destination Node": 41,
+                                "Destination Type": "ValNode",
+                                "Edge Type": "Store",
+                                "Source Node": 40,
+                                "Source Type": "ValNode",
+                                "dstValueName": "parg.addr",
+                                "srcValueName": "parg"
+                        }
+                ],
+                "Source Location": "{  }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 39,
+                                "ICFGEdgeSrcID": 38
+                        }
+                ],
+                "ICFG_ID": 38,
+                "Node Type": "FunRetBlock",
+                "Source Location": "{ ln: 47 fl: svf-sample.c }"
+        },
+        {
+                "ICFGEdges": [
+                        {
+                                "ICFG Edge Type": "IntraCFGEdge",
+                                "ICFGEdgeDstID": 20,
+                                "ICFGEdgeSrcID": 19
+                        }
+                ],
+                "ICFG_ID": 19,
+                "Node Type": "IntraBlock",
+                "PAG Edges": [],
+                "Source Location": "{ ln: 33 fl: svf-sample.c }"
+        }
+]

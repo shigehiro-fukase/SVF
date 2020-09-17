@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C9EF76A8-247B-3CB5-979E-A8703FF3ECA8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\work\git\SVF\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule F:/work/git/SVF/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.16\Modules\AddFileDependencies.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMBuildTreeOnlyTargets.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfig.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfigVersion.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMExports.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\AddLLVM.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\DetermineGCCCompatible.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVM-Config.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVMProcessSources.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\work\git\SVF\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule F:/work/git/SVF/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.16\Modules\AddFileDependencies.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMBuildTreeOnlyTargets.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfig.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfigVersion.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMExports.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\AddLLVM.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\DetermineGCCCompatible.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVM-Config.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVMProcessSources.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\work\git\SVF\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule F:/work/git/SVF/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.16\Modules\AddFileDependencies.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMBuildTreeOnlyTargets.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfig.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfigVersion.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMExports.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\AddLLVM.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\DetermineGCCCompatible.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVM-Config.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVMProcessSources.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\work\git\SVF\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule F:/work/git/SVF/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.16\Modules\AddFileDependencies.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMBuildTreeOnlyTargets.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfig.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMConfigVersion.cmake;C:\work\git\llvm\9.0\build\lib\cmake\llvm\LLVMExports.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\AddLLVM.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\DetermineGCCCompatible.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVM-Config.cmake;C:\work\git\llvm\9.0\llvm-9.0.0.src\cmake\modules\LLVMProcessSources.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeCXXCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeRCCompiler.cmake;F:\work\git\SVF\build\CMakeFiles\3.16.2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\work\git\SVF\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\work\git\SVF\build\ZERO_CHECK.vcxproj">
+      <Project>{7F6E5718-B75D-30F9-A885-DCCF878911CB}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\lib\CUDD\Cudd.vcxproj">
+      <Project>{50BF3890-CDD6-3DDF-A216-BE903053945E}</Project>
+      <Name>Cudd</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\lib\Svf.vcxproj">
+      <Project>{DF168F14-FCF3-34E6-B718-398AB334A008}</Project>
+      <Name>Svf</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\tools\DDA\dvf.vcxproj">
+      <Project>{8E35E270-8D10-318E-8413-D1BCF2DECE2C}</Project>
+      <Name>dvf</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\tools\SABER\saber.vcxproj">
+      <Project>{7A95277A-2BCE-3FE0-8BFF-C85EB1C77F39}</Project>
+      <Name>saber</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\tools\Example\svf-ex.vcxproj">
+      <Project>{B6C1C24C-BD76-3CA6-AC47-52A060B5C93A}</Project>
+      <Name>svf-ex</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\tools\SVFPA\svf-pa.vcxproj">
+      <Project>{5D574222-2CDE-332B-AA27-0B1681809045}</Project>
+      <Name>svf-pa</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\tools\WPA\wpa.vcxproj">
+      <Project>{FF2C06E4-C9AE-3070-B24A-D4F7575FB910}</Project>
+      <Name>wpa</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

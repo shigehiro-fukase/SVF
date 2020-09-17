@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FF2C06E4-C9AE-3070-B24A-D4F7575FB910}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>wpa</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\work\git\SVF\build\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wpa.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wpa</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\work\git\SVF\build\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wpa.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wpa</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\work\git\SVF\build\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">wpa.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">wpa</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\work\git\SVF\build\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">wpa.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">wpa</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4624;4244;4141;4530</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Debug\Svf.lib;..\..\lib\CUDD\Debug\Cudd.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMipo.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMIRReader.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMInstrumentation.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMTarget.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMLinker.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMScalarOpts.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMSupport.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMVectorize.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMAsmParser.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMAggressiveInstCombine.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMObject.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMBitReader.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMBitstreamReader.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMMCParser.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMMC.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMDebugInfoCodeView.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMDebugInfoMSF.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMProfileData.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMBinaryFormat.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMRemarks.lib;C:\work\git\llvm\9.0\build\Debug\lib\LLVMSupport.lib;psapi.lib;shell32.lib;ole32.lib;uuid.lib;advapi32.lib;delayimp.lib;-delayload:shell32.dll;-delayload:ole32.dll;C:\work\git\llvm\9.0\build\Debug\lib\LLVMDemangle.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>/bin;/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>F:/work/git/SVF/build/tools/WPA/Debug/wpa.lib</ImportLibrary>
+      <ProgramDataBaseFile>F:/work/git/SVF/build/bin/Debug/wpa.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4624;4244;4141;4530</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Release\Svf.lib;..\..\lib\CUDD\Release\Cudd.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMipo.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMIRReader.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMInstrumentation.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMTarget.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMLinker.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMScalarOpts.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMSupport.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMVectorize.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMAsmParser.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMAggressiveInstCombine.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMObject.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMBitReader.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMBitstreamReader.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMMCParser.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMMC.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMDebugInfoCodeView.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMDebugInfoMSF.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMProfileData.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMBinaryFormat.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMRemarks.lib;C:\work\git\llvm\9.0\build\Release\lib\LLVMSupport.lib;psapi.lib;shell32.lib;ole32.lib;uuid.lib;advapi32.lib;delayimp.lib;-delayload:shell32.dll;-delayload:ole32.dll;C:\work\git\llvm\9.0\build\Release\lib\LLVMDemangle.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>/bin;/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>F:/work/git/SVF/build/tools/WPA/Release/wpa.lib</ImportLibrary>
+      <ProgramDataBaseFile>F:/work/git/SVF/build/bin/Release/wpa.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4624;4244;4141;4530</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\MinSizeRel\Svf.lib;..\..\lib\CUDD\MinSizeRel\Cudd.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMipo.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMIRReader.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMInstrumentation.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMTarget.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMLinker.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMScalarOpts.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMSupport.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMVectorize.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMAsmParser.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMAggressiveInstCombine.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMObject.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMBitReader.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMBitstreamReader.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMMCParser.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMMC.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMDebugInfoCodeView.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMDebugInfoMSF.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMProfileData.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMBinaryFormat.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMRemarks.lib;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMSupport.lib;psapi.lib;shell32.lib;ole32.lib;uuid.lib;advapi32.lib;delayimp.lib;-delayload:shell32.dll;-delayload:ole32.dll;C:\work\git\llvm\9.0\build\MinSizeRel\lib\LLVMDemangle.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>/bin;/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>F:/work/git/SVF/build/tools/WPA/MinSizeRel/wpa.lib</ImportLibrary>
+      <ProgramDataBaseFile>F:/work/git/SVF/build/bin/MinSizeRel/wpa.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4624;4244;4141;4530</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\work\git\SVF\include;F:\work\git\SVF\build\include;\include;F:\work\git\SVF\Test-Suite;C:\work\git\llvm\9.0\llvm-9.0.0.src\include;C:\work\git\llvm\9.0\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\RelWithDebInfo\Svf.lib;..\..\lib\CUDD\RelWithDebInfo\Cudd.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMipo.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMIRReader.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMInstrumentation.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMTarget.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMLinker.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMScalarOpts.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMSupport.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMBitWriter.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMVectorize.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMAsmParser.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMInstCombine.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMAggressiveInstCombine.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMTransformUtils.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMAnalysis.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMObject.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMBitReader.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMBitstreamReader.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMMCParser.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMMC.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMDebugInfoCodeView.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMDebugInfoMSF.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMProfileData.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMCore.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMBinaryFormat.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMRemarks.lib;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMSupport.lib;psapi.lib;shell32.lib;ole32.lib;uuid.lib;advapi32.lib;delayimp.lib;-delayload:shell32.dll;-delayload:ole32.dll;C:\work\git\llvm\9.0\build\RelWithDebInfo\lib\LLVMDemangle.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>/bin;/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>F:/work/git/SVF/build/tools/WPA/RelWithDebInfo/wpa.lib</ImportLibrary>
+      <ProgramDataBaseFile>F:/work/git/SVF/build/bin/RelWithDebInfo/wpa.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\work\git\SVF\tools\WPA\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule F:/work/git/SVF/tools/WPA/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/tools/WPA/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\work\git\SVF\build\tools\WPA\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule F:/work/git/SVF/tools/WPA/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/tools/WPA/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\work\git\SVF\build\tools\WPA\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule F:/work/git/SVF/tools/WPA/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/tools/WPA/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\work\git\SVF\build\tools\WPA\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule F:/work/git/SVF/tools/WPA/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/work/git/SVF -BF:/work/git/SVF/build --check-stamp-file F:/work/git/SVF/build/tools/WPA/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\work\git\SVF\build\tools\WPA\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="F:\work\git\SVF\tools\WPA\wpa.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\work\git\SVF\build\ZERO_CHECK.vcxproj">
+      <Project>{7F6E5718-B75D-30F9-A885-DCCF878911CB}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\lib\CUDD\Cudd.vcxproj">
+      <Project>{50BF3890-CDD6-3DDF-A216-BE903053945E}</Project>
+      <Name>Cudd</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\work\git\SVF\build\lib\Svf.vcxproj">
+      <Project>{DF168F14-FCF3-34E6-B718-398AB334A008}</Project>
+      <Name>Svf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

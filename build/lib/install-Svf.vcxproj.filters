@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\work\git\SVF\build\CMakeFiles\e2a1e6e5b6d8717580881d6c0a979cf5\install-Svf.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\work\git\SVF\lib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="F:\work\git\SVF\build\lib\CMakeFiles\install-Svf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{939C5D0E-03B4-3F2B-A6AD-0CBE0EF19A34}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
