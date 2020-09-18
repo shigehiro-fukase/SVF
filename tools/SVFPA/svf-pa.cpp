@@ -286,15 +286,23 @@ void VariableAccess::save(SVFPAContext &context) {
 
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
-      OSF << getFunction()->getName().str() << "," << getFilename() << ","
-          << getLine() << "," << getColumn() << "," << T.Val->getName().str();
-      OSF << "\n";
+      OSF << getFunction()->getName().str()             // CSV row[0] (required) The caller function name
+          << "," << getFilename()                       // CSV row[1] (required) File name that defines the caller function
+          << "," << getLine()                           // CSV row[2] (optional) Line number of the function being called 
+          << "," << getColumn()                         // CSV row[3] (optional) Column number of the function being called
+          << "," << T.Val->getName().str()              // CSV row[4] (required) The name that the function being called
+          << "," << "#UNKNOWN"                          // CSV row[5] (required) File name that defines the function being called
+          << "\n";
     } else {
-      OSV << T.Val->getName().str() << ","
-          << getSourceFileName(T.Loc.SourceFile) << ",";
-      OSV << getAccessTypeName() << "," << getFilename() << "," << getLine()
-          << "," << getColumn();
-      OSV << "\n";
+      OSV << T.Val->getName().str()                     // CSV row[0] (required) Variable name being accessed
+          << "," << getSourceFileName(T.Loc.SourceFile) // CSV row[1] (required) File name that defines the variable being accessed
+          << "," << "#UNKNOWN"                          // CSV row[2] (optional) The name of the function that defines the variable being accessed
+          << "," << getAccessTypeName()                 // CSV row[3] (required) Access type (Write/Read/ ReadModifyWrite)
+          << "," << getFunction()->getName().str()      // CSV row[4] (required) The Function name accessing the variable
+          << "," << getFilename()                       // CSV row[5] (required) File name that defines the variable being accessed
+          << "," << getLine()                           // CSV row[6] (optional) Line number of the file where the variable is accessed
+          << "," << getColumn()                         // CSV row[7] (optional) Column number of the file in which the variable is accessed
+          << "\n";
     }
   }
 }
