@@ -14,6 +14,12 @@ static llvm::cl::opt<std::string>
     InputFilename(cl::Positional, llvm::cl::desc("<input bitcode>"),
                   llvm::cl::init("-"));
 
+static cl::opt<std::string>
+    SaveFileFc("csv-fc",
+             llvm::cl::desc("CSV filename for function call information"));
+static cl::opt<std::string>
+    SaveFileVa("csv-va",
+             llvm::cl::desc("CSV filename for variable access information"));
 static llvm::cl::opt<bool>
     SaveFile("save",
              llvm::cl::desc("Save access type and call information to file"));
@@ -437,8 +443,12 @@ int main(int argc, char **argv) {
 
   if (SaveFile) {
     std::error_code EC;
-    llvm::raw_fd_ostream OSF("Output_Call.csv", EC, llvm::sys::fs::F_None);
-    llvm::raw_fd_ostream OSV("Output_VarAccess.csv", EC, llvm::sys::fs::F_None);
+    std::string csv_fc = "Output_Call.csv";
+    std::string csv_va = "Output_VarAccess.csv";
+    if (!SaveFileFc.empty()) csv_fc = SaveFileFc;
+    if (!SaveFileVa.empty()) csv_va = SaveFileVa;
+    llvm::raw_fd_ostream OSF(csv_fc, EC, llvm::sys::fs::F_None);
+    llvm::raw_fd_ostream OSV(csv_va, EC, llvm::sys::fs::F_None);
     SVFPAContext context(&OSF, &OSV, SaveFile);
     for (NodeID n : pagNodes) {
       dumpPts(solver, svfg, n, solver->getPts(n), context);
