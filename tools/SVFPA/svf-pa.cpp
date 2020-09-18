@@ -4,6 +4,7 @@
 #include "SVF-FE/PAGBuilder.h"
 #include "WPA/Andersen.h"
 #include "llvm/IR/DebugInfoMetadata.h"
+#include <sstream>
 
 using namespace llvm;
 using namespace std;
@@ -252,26 +253,43 @@ void VariableAccess::dump(void) {
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
       uint32_t line = T.Loc.Line;
-      llvm::outs() << "<FuncCall>:  ";
-      llvm::outs() << getFunction()->getName().str() << "," << getFilename()
-                   << "," << getLine() << "," << getColumn() << ",";
-      llvm::outs() << T.AccessPtrName << ",";
-      llvm::outs() << T.Val->getName().str();
+      llvm::outs()
+          << "Function_Call:Pointer=\"" << T.AccessPtrName << "\", csv="
+          << getFunction()->getName().str()             // CSV row[0] (required) The caller function name
+          << "," << getFilename()                       // CSV row[1] (required) File name that defines the caller function
+          << "," << getLine()                           // CSV row[2] (optional) Line number of the function being called 
+          << "," << getColumn()                         // CSV row[3] (optional) Column number of the function being called
+          << "," << T.Val->getName().str()              // CSV row[4] (required) The name that the function being called
+          << "," << "#UNKNOWN"                          // CSV row[5] (required) File name that defines the function being called
+          ;
     } else {
-      llvm::outs() << "<VarAccess>: ";
-      llvm::outs() << T.AccessPtrName << ",";
-      llvm::outs() << T.Val->getName().str() << ","
-                   << getSourceFileName(T.Loc.SourceFile) << ",";
-      // Source
-      llvm::outs() << getAccessTypeName() << "," << getFilename() << ",";
       uint32_t line = getLine();
       uint32_t col  = getColumn();
+      std::stringstream lineSS, colSS;
+
       if (line == (uint32_t)-1) {
-        llvm::outs() << "N/A";
+          lineSS << "N/A";
       } else {
-        llvm::outs() << line;
+          lineSS << line;
       }
-      llvm::outs() << "," << col;
+      lineSS.flush();
+      if (col == (uint32_t)-1) {
+          colSS << "N/A";
+      } else {
+          colSS << col;
+      }
+      colSS.flush();
+      llvm::outs()
+          << "Variable_Access:Pointer=\"" << T.AccessPtrName << "\", csv="
+          << "," << T.Val->getName().str()              // CSV row[0] (required) Variable name being accessed
+          << "," << getSourceFileName(T.Loc.SourceFile) // CSV row[1] (required) File name that defines the variable being accessed
+          << "," << "#UNKNOWN"                          // CSV row[2] (optional) The name of the function that defines the variable being accessed
+          << "," << getAccessTypeName()                 // CSV row[3] (required) Access type (Write/Read/ ReadModifyWrite)
+          << "," << getFunction()->getName().str()      // CSV row[4] (required) The Function name accessing the variable
+          << "," << getFilename()                       // CSV row[5] (required) File name that defines the variable being accessed
+          << "," << lineSS.str()                        // CSV row[6] (optional) Line number of the file where the variable is accessed
+          << "," << colSS.str()                         // CSV row[7] (optional) Column number of the file in which the variable is accessed
+          ;
     }
     llvm::outs() << "\n";
   }
