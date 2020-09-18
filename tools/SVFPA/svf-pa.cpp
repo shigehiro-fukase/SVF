@@ -21,6 +21,9 @@ static cl::opt<std::string>
     SaveFileVa("csv-va",
              llvm::cl::desc("CSV filename for variable access information"));
 static llvm::cl::opt<bool>
+    DumpConsole("dump",
+             llvm::cl::desc("Dump access type and call information to console"));
+static llvm::cl::opt<bool>
     SaveFile("save",
              llvm::cl::desc("Save access type and call information to file"));
 
@@ -107,14 +110,15 @@ bool getLocation(Location &Loc, InstType &Type, const Value *val,
 
 class SVFPAContext {
   bool SaveFile;
+  bool DumpConsole;
   llvm::raw_fd_ostream *OSFuncCalls;
   llvm::raw_fd_ostream *OSVarAccess;
 
 public:
-  SVFPAContext() : SVFPAContext(nullptr, nullptr, false) {}
+  SVFPAContext() : SVFPAContext(nullptr, nullptr, false, true) {}
 
-  SVFPAContext(llvm::raw_fd_ostream *OSF, llvm::raw_fd_ostream *OSV, bool Save)
-      : OSFuncCalls(OSF), OSVarAccess(OSV), SaveFile(Save) {}
+  SVFPAContext(llvm::raw_fd_ostream *OSF, llvm::raw_fd_ostream *OSV, bool Save, bool Dump)
+      : OSFuncCalls(OSF), OSVarAccess(OSV), SaveFile(Save), DumpConsole(Dump) {}
 
   ~SVFPAContext() {
     if (OSFuncCalls)
@@ -124,6 +128,7 @@ public:
   }
 
   bool isSaveFile() { return SaveFile; }
+  bool isDumpConsole() { return DumpConsole; }
   llvm::raw_fd_ostream &getOSFuncCall() { return *OSFuncCalls; }
   llvm::raw_fd_ostream &getOSVarAccess() { return *OSVarAccess; }
 };
@@ -405,7 +410,8 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts,
   }
   if (context.isSaveFile()) {
     Var.save(context);
-  } else {
+  }
+  if (context.isDumpConsole()) {
     Var.dump();
   }
 }
@@ -441,6 +447,10 @@ int main(int argc, char **argv) {
   SVFGBuilder svfBuilder;
   SVFG *svfg = svfBuilder.buildFullSVFGWithoutOPT(solver);
 
+  if (!SaveFile) {
+    DumpConsole = true;
+  }
+
   if (SaveFile) {
     std::error_code EC;
     std::string csv_fc = "Output_Call.csv";
@@ -449,7 +459,7 @@ int main(int argc, char **argv) {
     if (!SaveFileVa.empty()) csv_va = SaveFileVa;
     llvm::raw_fd_ostream OSF(csv_fc, EC, llvm::sys::fs::F_None);
     llvm::raw_fd_ostream OSV(csv_va, EC, llvm::sys::fs::F_None);
-    SVFPAContext context(&OSF, &OSV, SaveFile);
+    SVFPAContext context(&OSF, &OSV, SaveFile, DumpConsole);
     for (NodeID n : pagNodes) {
       dumpPts(solver, svfg, n, solver->getPts(n), context);
     }
