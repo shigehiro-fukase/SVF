@@ -10,6 +10,8 @@ using namespace llvm;
 using namespace std;
 using namespace SVF;
 
+static constexpr char *SVFPA_VERSION = "0.0.1 (" __DATE__ " " __TIME__ ")";
+
 static llvm::cl::opt<std::string>
     InputFilename(cl::Positional, llvm::cl::desc("<input bitcode>"),
                   llvm::cl::init("-"));
@@ -417,6 +419,17 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts,
 }
 
 int main(int argc, char **argv) {
+  std::vector<std::string> Args;
+  for (int i = 0; i < argc; i++) {
+    Args.push_back(argv[i]);
+  }
+  for (auto arg : Args) {
+    if (arg == "-version") {
+      llvm::errs() << " SVF-PA version " << SVFPA_VERSION << "\n";
+      return 0;
+    }
+  }
+
   if (auto *opt = static_cast<llvm::cl::opt<bool> *>(
           llvm::cl::getRegisteredOptions().lookup("stat"))) {
     bool &statOpt = opt->getValue();
