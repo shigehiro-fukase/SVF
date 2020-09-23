@@ -268,12 +268,14 @@ public:
       PV.Loc = L;
       PV.Val = N->getValue();
       PV.AccessPtrName = getAccessPtrName(getNode()).str();
+      if (PV.AccessPtrName.empty())
+        return;
+      if (IgnoreGEP && isa<GetElementPtrInst>(getNode()->getValue()))
+        return;
+
       auto Pos = PV.AccessPtrName.find(".addr");
       if (Pos != std::string::npos) {
         PV.AccessPtrName.erase(Pos);
-      }
-      if (IgnoreGEP && isa<GetElementPtrInst>(getNode()->getValue())) {
-        return;
       }
       TargetLocs.push_back(PV);
     }
