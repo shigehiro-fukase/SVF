@@ -4,15 +4,27 @@
 #include "SVF-FE/PAGBuilder.h"
 #include "WPA/Andersen.h"
 #include "llvm/IR/DebugInfoMetadata.h"
+#include <sstream>
 
 using namespace llvm;
 using namespace std;
 using namespace SVF;
 
+static constexpr char *SVFPA_VERSION = "0.0.1 (" __DATE__ " " __TIME__ ")";
+
 static llvm::cl::opt<std::string>
     InputFilename(cl::Positional, llvm::cl::desc("<input bitcode>"),
                   llvm::cl::init("-"));
 
+static cl::opt<std::string>
+    SaveFileFc("csv-fc",
+             llvm::cl::desc("CSV filename for function call information"));
+static cl::opt<std::string>
+    SaveFileVa("csv-va",
+             llvm::cl::desc("CSV filename for variable access information"));
+static llvm::cl::opt<bool>
+    DumpConsole("dump",
+             llvm::cl::desc("Dump access type and call information to console"));
 static llvm::cl::opt<bool>
     SaveFile("save",
              llvm::cl::desc("Save access type and call information to file"));
@@ -100,14 +112,15 @@ bool getLocation(Location &Loc, InstType &Type, const Value *val,
 
 class SVFPAContext {
   bool SaveFile;
+  bool DumpConsole;
   llvm::raw_fd_ostream *OSFuncCalls;
   llvm::raw_fd_ostream *OSVarAccess;
 
 public:
-  SVFPAContext() : SVFPAContext(nullptr, nullptr, false) {}
+  SVFPAContext() : SVFPAContext(nullptr, nullptr, false, true) {}
 
-  SVFPAContext(llvm::raw_fd_ostream *OSF, llvm::raw_fd_ostream *OSV, bool Save)
-      : OSFuncCalls(OSF), OSVarAccess(OSV), SaveFile(Save) {}
+  SVFPAContext(llvm::raw_fd_ostream *OSF, llvm::raw_fd_ostream *OSV, bool Save, bool Dump)
+      : OSFuncCalls(OSF), OSVarAccess(OSV), SaveFile(Save), DumpConsole(Dump) {}
 
   ~SVFPAContext() {
     if (OSFuncCalls)
@@ -117,6 +130,7 @@ public:
   }
 
   bool isSaveFile() { return SaveFile; }
+  bool isDumpConsole() { return DumpConsole; }
   llvm::raw_fd_ostream &getOSFuncCall() { return *OSFuncCalls; }
   llvm::raw_fd_ostream &getOSVarAccess() { return *OSVarAccess; }
 };
@@ -252,26 +266,43 @@ void VariableAccess::dump(void) {
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
       uint32_t line = T.Loc.Line;
-      llvm::outs() << "<FuncCall>:  ";
-      llvm::outs() << getFunction()->getName().str() << "," << getFilename()
-                   << "," << getLine() << "," << getColumn() << ",";
-      llvm::outs() << T.AccessPtrName << ",";
-      llvm::outs() << T.Val->getName().str();
+      llvm::outs()
+          << "Function_Call:Pointer=\"" << T.AccessPtrName << "\", csv="
+          << getFunction()->getName().str()             // CSV row[0] (required) The caller function name
+          << "," << getFilename()                       // CSV row[1] (required) File name that defines the caller function
+          << "," << getLine()                           // CSV row[2] (optional) Line number of the function being called 
+          << "," << getColumn()                         // CSV row[3] (optional) Column number of the function being called
+          << "," << T.Val->getName().str()              // CSV row[4] (required) The name that the function being called
+          << "," << "#UNKNOWN"                          // CSV row[5] (required) File name that defines the function being called
+          ;
     } else {
-      llvm::outs() << "<VarAccess>: ";
-      llvm::outs() << T.AccessPtrName << ",";
-      llvm::outs() << T.Val->getName().str() << ","
-                   << getSourceFileName(T.Loc.SourceFile) << ",";
-      // Source
-      llvm::outs() << getAccessTypeName() << "," << getFilename() << ",";
       uint32_t line = getLine();
       uint32_t col  = getColumn();
+      std::stringstream lineSS, colSS;
+
       if (line == (uint32_t)-1) {
-        llvm::outs() << "N/A";
+          lineSS << "N/A";
       } else {
-        llvm::outs() << line;
+          lineSS << line;
       }
-      llvm::outs() << "," << col;
+      lineSS.flush();
+      if (col == (uint32_t)-1) {
+          colSS << "N/A";
+      } else {
+          colSS << col;
+      }
+      colSS.flush();
+      llvm::outs()
+          << "Variable_Access:Pointer=\"" << T.AccessPtrName << "\", csv="
+          << "," << T.Val->getName().str()              // CSV row[0] (required) Variable name being accessed
+          << "," << getSourceFileName(T.Loc.SourceFile) // CSV row[1] (required) File name that defines the variable being accessed
+          << "," << "#UNKNOWN"                          // CSV row[2] (optional) The name of the function that defines the variable being accessed
+          << "," << getAccessTypeName()                 // CSV row[3] (required) Access type (Write/Read/ ReadModifyWrite)
+          << "," << getFunction()->getName().str()      // CSV row[4] (required) The Function name accessing the variable
+          << "," << getFilename()                       // CSV row[5] (required) File name that defines the variable being accessed
+          << "," << lineSS.str()                        // CSV row[6] (optional) Line number of the file where the variable is accessed
+          << "," << colSS.str()                         // CSV row[7] (optional) Column number of the file in which the variable is accessed
+          ;
     }
     llvm::outs() << "\n";
   }
@@ -286,15 +317,23 @@ void VariableAccess::save(SVFPAContext &context) {
 
   for (auto T : TargetLocs) {
     if (isFunctionCall()) {
-      OSF << getFunction()->getName().str() << "," << getFilename() << ","
-          << getLine() << "," << getColumn() << "," << T.Val->getName().str();
-      OSF << "\n";
+      OSF << getFunction()->getName().str()             // CSV row[0] (required) The caller function name
+          << "," << getFilename()                       // CSV row[1] (required) File name that defines the caller function
+          << "," << getLine()                           // CSV row[2] (optional) Line number of the function being called 
+          << "," << getColumn()                         // CSV row[3] (optional) Column number of the function being called
+          << "," << T.Val->getName().str()              // CSV row[4] (required) The name that the function being called
+          << "," << "#UNKNOWN"                          // CSV row[5] (required) File name that defines the function being called
+          << "\n";
     } else {
-      OSV << T.Val->getName().str() << ","
-          << getSourceFileName(T.Loc.SourceFile) << ",";
-      OSV << getAccessTypeName() << "," << getFilename() << "," << getLine()
-          << "," << getColumn();
-      OSV << "\n";
+      OSV << T.Val->getName().str()                     // CSV row[0] (required) Variable name being accessed
+          << "," << getSourceFileName(T.Loc.SourceFile) // CSV row[1] (required) File name that defines the variable being accessed
+          << "," << "#UNKNOWN"                          // CSV row[2] (optional) The name of the function that defines the variable being accessed
+          << "," << getAccessTypeName()                 // CSV row[3] (required) Access type (Write/Read/ ReadModifyWrite)
+          << "," << getFunction()->getName().str()      // CSV row[4] (required) The Function name accessing the variable
+          << "," << getFilename()                       // CSV row[5] (required) File name that defines the variable being accessed
+          << "," << getLine()                           // CSV row[6] (optional) Line number of the file where the variable is accessed
+          << "," << getColumn()                         // CSV row[7] (optional) Column number of the file in which the variable is accessed
+          << "\n";
     }
   }
 }
@@ -373,12 +412,24 @@ void dumpPts(T *solver, SVFG *svfg, NodeID ptr, const PointsTo &pts,
   }
   if (context.isSaveFile()) {
     Var.save(context);
-  } else {
+  }
+  if (context.isDumpConsole()) {
     Var.dump();
   }
 }
 
 int main(int argc, char **argv) {
+  std::vector<std::string> Args;
+  for (int i = 0; i < argc; i++) {
+    Args.push_back(argv[i]);
+  }
+  for (auto arg : Args) {
+    if (arg == "-version") {
+      llvm::errs() << " SVF-PA version " << SVFPA_VERSION << "\n";
+      return 0;
+    }
+  }
+
   if (auto *opt = static_cast<llvm::cl::opt<bool> *>(
           llvm::cl::getRegisteredOptions().lookup("stat"))) {
     bool &statOpt = opt->getValue();
@@ -409,11 +460,19 @@ int main(int argc, char **argv) {
   SVFGBuilder svfBuilder;
   SVFG *svfg = svfBuilder.buildFullSVFGWithoutOPT(solver);
 
+  if (!SaveFile) {
+    DumpConsole = true;
+  }
+
   if (SaveFile) {
     std::error_code EC;
-    llvm::raw_fd_ostream OSF("Output_Call.csv", EC, llvm::sys::fs::F_None);
-    llvm::raw_fd_ostream OSV("Output_VarAccess.csv", EC, llvm::sys::fs::F_None);
-    SVFPAContext context(&OSF, &OSV, SaveFile);
+    std::string csv_fc = "Output_Call.csv";
+    std::string csv_va = "Output_VarAccess.csv";
+    if (!SaveFileFc.empty()) csv_fc = SaveFileFc;
+    if (!SaveFileVa.empty()) csv_va = SaveFileVa;
+    llvm::raw_fd_ostream OSF(csv_fc, EC, llvm::sys::fs::F_None);
+    llvm::raw_fd_ostream OSV(csv_va, EC, llvm::sys::fs::F_None);
+    SVFPAContext context(&OSF, &OSV, SaveFile, DumpConsole);
     for (NodeID n : pagNodes) {
       dumpPts(solver, svfg, n, solver->getPts(n), context);
     }
