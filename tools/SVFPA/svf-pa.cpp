@@ -317,7 +317,7 @@ void VariableAccess::dump(void) {
       colSS.flush();
       llvm::outs()
           << "Variable_Access:Pointer=\"" << T.AccessPtrName << "\", csv="
-          << "," << T.Val->getName().str()              // CSV row[0] (required) Variable name being accessed
+          << T.Val->getName().str()                     // CSV row[0] (required) Variable name being accessed
           << "," << getSourceFileName(T.Loc.SourceFile) // CSV row[1] (required) File name that defines the variable being accessed
           << "," << "#UNKNOWN"                          // CSV row[2] (optional) The name of the function that defines the variable being accessed
           << "," << getAccessTypeName()                 // CSV row[3] (required) Access type (Write/Read/ ReadModifyWrite)
